@@ -6,15 +6,11 @@
 .tabset-ctrl#shop-tabs {
 
   .tab-buttons {
-    background: url("/assets/gray_jean.png") top left repeat;
-
-    @include box-shadow(inset 0 2px 3px 0 rgba(0, 0, 0, 0.15));
-
     color: $dark-grey;
+    box-shadow: 0 1px 0 $light-grey-transparency;
 
-    .row:first-child {
+    .columns {
       display: flex;
-      justify-content: space-between;
     }
   }
 
@@ -27,8 +23,7 @@
     >a {
       outline: none;
       display: block;
-      background-color: #efefef;
-      color: #222;
+      color: $primary-grey;
       font-family: "Oswald", sans-serif;
     }
 
@@ -44,7 +39,7 @@
       border: none;
 
       &:hover, &:focus, &:active {
-        color: $clr-brick-bright;
+        color: $primary-blue;
       }
 
       &, &:hover {
@@ -58,10 +53,10 @@
     }
 
     &.selected {
-      border-bottom: 4px solid $clr-brick;
+      border-bottom: 4px solid $primary-blue;
 
       a {
-        color: $clr-brick;
+        color: $primary-blue;
       }
     }
   }
@@ -75,7 +70,7 @@
 
     .content {
       padding: 1.25em 0;
-      background-color: $white;
+      background-color: transparent;
 
       img {
         margin: 0px 0px 0px 40px;
