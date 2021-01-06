@@ -381,9 +381,7 @@ GEM
     foundation-icons-sass-rails (3.0.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
-    foundation-rails (5.5.2.1)
-      railties (>= 3.1.0)
-      sass (>= 3.3.0, < 3.5)
+    foundation-rails (6.5.1.0)
     fuubar (2.5.1)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
@@ -447,7 +445,7 @@ GEM
     mini_portile2 (2.4.0)
     mini_racer (0.2.15)
       libv8 (> 7.3)
-    minitest (5.14.2)
+    minitest (5.14.3)
     money (5.0.0)
       i18n (~> 0.4)
       json
@@ -762,7 +760,7 @@ DEPENDENCIES
   ffaker
   figaro
   foundation-icons-sass-rails
-  foundation-rails (= 5.5.2.1)
+  foundation-rails (= 6.5.1.0)
   fuubar (~> 2.5.1)
   geocoder
   gmaps4rails
