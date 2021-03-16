@@ -4,14 +4,24 @@ source 'https://rubygems.org'
 ruby "2.4.4"
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
+gem 'rails', '~> 5.0.0'
+
+gem 'activemerchant', '>= 1.78.0'
+gem 'angular-rails-templates', '>= 0.3.0'
+gem 'awesome_nested_set'
+gem 'ransack', '2.3.0'
+gem 'responders'
+gem 'sass', '<= 4.7.1'
+gem 'sass-rails', '< 7.0.0'
+
 gem 'i18n'
-gem 'i18n-js', '~> 3.8.0'
-gem 'rails', '~> 4.2'
+gem 'i18n-js', '~> 3.8.1'
 gem 'rails-i18n'
 gem 'rails_safe_tasks', '~> 1.0'
 
 gem "activerecord-import"
-gem 'responders', '~> 2.0'
+gem "db2fog", github: "openfoodfoundation/db2fog", branch: "rails-5"
+gem "fog-aws", ">= 0.6.0"
 
 gem "catalog", path: "./engines/catalog"
 gem 'dfc_provider', path: './engines/dfc_provider'
@@ -22,28 +32,17 @@ gem 'activerecord-postgresql-adapter'
 gem 'pg', '~> 0.21.0'
 
 gem 'acts_as_list', '0.9.19'
-gem 'awesome_nested_set', '~> 3.2.1'
-gem 'cancan', '~> 1.6.10'
+gem 'cancancan', '~> 1.7.0'
 gem 'ffaker'
 gem 'highline', '2.0.3' # Necessary for the install generator
 gem 'json'
-gem 'money', '< 6.1.0'
+gem 'monetize', '~> 1.10'
 gem 'paranoia', '~> 2.4'
-gem 'ransack', '~> 1.8.10'
 gem 'state_machines-activerecord'
 gem 'stringex', '~> 2.8.5'
 
-# Our branch contains the following changes:
-# - Pass customer email and phone number to PayPal (merged to upstream master)
-# - Change type of password from string to password to hide it in the form
-# - Skip CA cert file and use the ones provided by the OS
-gem 'spree_paypal_express', github: 'openfoodfoundation/better_spree_paypal_express', branch: '2-1-0-stable'
-
+gem 'paypal-sdk-merchant', '1.117.2'
 gem 'stripe'
-
-# We need at least this version to have Digicert's root certificate
-# which is needed for Pin Payments (and possibly others).
-gem 'activemerchant', '~> 1.78.0'
 
 gem 'devise'
 gem 'devise-encryptable'
@@ -55,18 +54,14 @@ gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.2.1'
 
 gem 'andand'
 gem 'angularjs-rails', '1.5.5'
 gem 'aws-sdk', '1.67.0'
 gem 'bugsnag'
-gem 'db2fog'
 gem 'haml'
 gem 'redcarpet'
-gem 'sass'
-gem 'sass-rails'
-gem 'unicorn'
 
 gem 'actionpack-action_caching'
 # AMS 0.9.x and 0.10.x are very different from 0.8.4 and the upgrade is not straight forward
@@ -80,8 +75,7 @@ gem 'dalli'
 gem 'figaro'
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'oj'
-gem 'paper_trail', '~> 7.1.3'
+gem 'paper_trail', '~> 10.3.1'
 gem 'paperclip', '~> 3.4.1'
 gem 'rack-rewrite'
 gem 'rack-ssl', require: 'rack/ssl'
@@ -89,23 +83,23 @@ gem 'roadie-rails', '~> 1.3.0'
 
 gem 'combine_pdf'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', '0.12.5' # We need to upgrade our CI before we can bump this :/
 
 gem 'immigrant'
 gem 'roo', '~> 2.8.3'
 
 gem 'whenever', require: false
 
-gem 'test-unit', '~> 3.3'
+gem 'test-unit', '~> 3.4'
 
 gem 'coffee-rails', '~> 4.2.2'
 gem 'compass-rails'
 
-gem 'mini_racer', '0.2.15'
+gem 'mini_racer', '0.3.1'
 
 gem 'uglifier', '>= 1.0.3'
 
-gem 'angular-rails-templates', '~> 0.3.0'
+gem 'angular_rails_csrf'
 gem 'foundation-icons-sass-rails'
 
 gem 'foundation-rails', '= 5.5.2.1'
@@ -117,6 +111,8 @@ gem 'select2-rails', '~> 3.4.7'
 
 gem 'ofn-qz', github: 'openfoodfoundation/ofn-qz', branch: 'ofn-rails-4'
 
+gem 'good_migrations'
+
 group :production, :staging do
   gem 'ddtrace'
   gem 'unicorn-worker-killer'
@@ -126,6 +122,7 @@ group :test, :development do
   # Pretty printed test output
   gem 'atomic'
   gem 'awesome_print'
+  gem 'bullet'
   gem 'capybara'
   gem 'database_cleaner', require: false
   gem "factory_bot_rails", '5.2.0', require: false
@@ -146,17 +143,17 @@ end
 group :test do
   gem 'simplecov', require: false
   gem 'test-prof'
-  gem 'test_after_commit' # needed to test Devise callbacks
   gem 'webmock'
+  gem 'rails-controller-testing'
   # See spec/spec_helper.rb for instructions
   # gem 'perftools.rb'
 end
 
 group :development do
-  gem 'byebug', '~> 11.1.3' # 11.1 requires ruby 2.4
+  gem 'byebug'
   gem 'debugger-linecache'
-  gem "pry", "~> 0.12.0" # pry 0.13 is not compatible with pry-byebug 3.7
-  gem 'pry-byebug', '~> 3.8.0' # 3.8 requires ruby 2.4
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'spring'
