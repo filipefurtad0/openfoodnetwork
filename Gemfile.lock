@@ -117,7 +117,7 @@ GEM
     angular_rails_csrf (4.5.0)
       railties (>= 3, < 7)
     angularjs-file-upload-rails (2.4.1)
-    angularjs-rails (1.5.5)
+    angularjs-rails (1.8.0)
     arel (7.1.4)
     ast (2.4.2)
     atomic (1.1.101)
@@ -609,7 +609,7 @@ DEPENDENCIES
   angular-rails-templates (>= 0.3.0)
   angular_rails_csrf
   angularjs-file-upload-rails (~> 2.4.1)
-  angularjs-rails (= 1.5.5)
+  angularjs-rails (= 1.8.0)
   atomic
   awesome_nested_set
   awesome_print
