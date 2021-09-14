@@ -407,7 +407,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
-    parallel (1.20.1)
+    parallel (1.21.0)
     paranoia (2.4.3)
       activerecord (>= 4.0, < 6.2)
     parser (3.0.2.0)
@@ -546,7 +546,7 @@ GEM
     rswag-ui (2.4.0)
       actionpack (>= 3.1, < 7.0)
       railties (>= 3.1, < 7.0)
-    rubocop (1.20.0)
+    rubocop (1.21.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
