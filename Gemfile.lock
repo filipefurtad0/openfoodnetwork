@@ -374,7 +374,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.0225)
+    mime-types-data (3.2021.0901)
     mimemagic (0.4.3)
       nokogiri (~> 1)
       rake
@@ -406,11 +406,10 @@ GEM
     paper_trail (12.1.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
-    paperclip (3.4.2)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
+    paperclip (4.2.4)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
       mime-types
     parallel (1.21.0)
     paranoia (2.4.3)
@@ -679,7 +678,7 @@ GEM
     xml-simple (1.1.8)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
@@ -760,7 +759,7 @@ DEPENDENCIES
   order_management!
   pagy (~> 5.0)
   paper_trail (~> 12.1.0)
-  paperclip (~> 3.4.1)
+  paperclip (~> 4.2.4)
   paranoia (~> 2.4)
   paypal-sdk-merchant (= 1.117.2)
   pdf-reader
