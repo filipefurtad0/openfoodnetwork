@@ -146,8 +146,8 @@ GEM
       sprockets (>= 3.0, < 5)
       sprockets-rails
       tilt
-    angular_rails_csrf (4.5.0)
-      railties (>= 3, < 7)
+    angular_rails_csrf (5.0.0)
+      railties (>= 3, < 8)
     angularjs-file-upload-rails (2.4.1)
     angularjs-rails (1.8.0)
     arel-helpers (2.14.0)
@@ -155,7 +155,6 @@ GEM
     ast (2.4.2)
     awesome_nested_set (3.5.0)
       activerecord (>= 4.0.0, < 7.1)
-    awesome_print (1.9.2)
     aws-eventstream (1.2.0)
     aws-partitions (1.601.0)
     aws-sdk-core (3.131.2)
@@ -186,7 +185,6 @@ GEM
     bullet (7.0.2)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
-    byebug (11.1.3)
     cable_ready (5.0.0.pre3)
       rails (>= 5.2)
       thread-local (>= 1.1.0)
@@ -239,7 +237,7 @@ GEM
       debase-ruby_core_source (= 0.10.12)
       msgpack
     debase-ruby_core_source (0.10.12)
-    debug (1.6.1)
+    debug (1.6.2)
       irb (>= 1.3.6)
       reline (>= 0.3.1)
     debugger-linecache (1.2.0)
@@ -433,9 +431,6 @@ GEM
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    pry-byebug (3.9.0)
-      byebug (~> 11.0)
-      pry (~> 0.13.0)
     public_suffix (4.0.7)
     puma (5.6.4)
       nio4r (~> 2.0)
@@ -593,7 +588,7 @@ GEM
     semantic_range (3.0.0)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
-    sidekiq (6.5.3)
+    sidekiq (6.5.4)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.5.0)
@@ -630,7 +625,7 @@ GEM
       activerecord (>= 5.1)
       state_machines-activemodel (>= 0.8.0)
     stringex (2.8.5)
-    stripe (5.42.0)
+    stripe (7.0.0)
     temple (0.8.2)
     test-prof (1.0.9)
     test-unit (3.5.3)
@@ -649,7 +644,7 @@ GEM
     valid_email2 (4.0.3)
       activemodel (>= 3.2)
       mail (~> 2.5)
-    view_component (2.64.0)
+    view_component (2.66.0)
       activesupport (>= 5.0.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
@@ -666,7 +661,7 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0)
-    webmock (3.15.0)
+    webmock (3.17.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -708,13 +703,11 @@ DEPENDENCIES
   angularjs-rails (= 1.8.0)
   arel-helpers (~> 2.12)
   awesome_nested_set
-  awesome_print
   aws-sdk-s3
   bigdecimal (= 3.0.2)
   bootsnap
   bugsnag
   bullet
-  byebug
   cable_ready (= 5.0.0.pre3)
   cancancan (~> 1.15.0)
   capybara
@@ -775,7 +768,6 @@ DEPENDENCIES
   pdf-reader
   pg (~> 1.2.3)
   pry (~> 0.13.0)
-  pry-byebug (~> 3.9.0)
   puma
   rack-mini-profiler (< 3.0.0)
   rack-rewrite
