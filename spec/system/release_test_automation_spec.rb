@@ -12,7 +12,7 @@ describe "visits", type: :system do
 
     before do
       # visits the homepage and switches to EN locale 
-      visit "https://staging.coopcircuits.fr/login#/locales/en_FR"
+      visit "https://staging.coopcircuits.fr/login#/"
 
       # accepts cookies
       click_on "Accepter les cookies"
@@ -61,6 +61,9 @@ describe "visits", type: :system do
         # chooses Stripe SCA payment method
         choose "StripeSCA"
 
+        # select a card
+        sleep(1)
+
         # proceeds to Order summary
         click_on "Etape suivante - Récapitulatif de commande"
 
@@ -91,9 +94,6 @@ describe "visits", type: :system do
 
         # places the order
         click_on "Valider ma commande"
-
-        # redirects to Stripe for authentication
-        click_on "Complete authentication"
 
         # displays the order confirmation banner
         expect(page).to have_content "Votre commande a été traitée avec succès"
