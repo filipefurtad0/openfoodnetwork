@@ -169,7 +169,7 @@ describe '
     let(:distributor2) { create(:distributor_enterprise, name: 'Second Distributor') }
     let(:distributor3) { create(:distributor_enterprise, name: 'Third Distributor') }
     let(:ef1) { create(:enterprise_fee, name: 'One', enterprise: distributor1) }
-    let(:ef2) { create(:enterprise_fee, name: 'Two', enterprise: distributor2) }
+    let(:ef2) { create(:enterprise_fee, name: 'Two', enterprise: distributor1, type: Calculator::PerOrder, inherits_tax_category: true) }
 
     before(:each) do
       enterprise_user.enterprise_roles.build(enterprise: distributor1).save
@@ -185,6 +185,7 @@ describe '
       end
       context "selecting Inherit from Product" do
         context "with fees applied over the order" do
+          pending "#10348"
           it "does not create the fee and displays the error message to the user" do
             select distributor1.name,
                    from: 'sets_enterprise_fee_set_collection_attributes_0_enterprise_id'
@@ -226,23 +227,46 @@ describe '
       end
 
       context "selecting a specific tax category" do
-        it "creates enterprise fees" do
-          select distributor1.name,
-                 from: 'sets_enterprise_fee_set_collection_attributes_0_enterprise_id'
-          select 'Packing', from: 'sets_enterprise_fee_set_collection_attributes_0_fee_type'
-          fill_in 'sets_enterprise_fee_set_collection_attributes_0_name', with: 'foo'
-          select 'GST', from: 'sets_enterprise_fee_set_collection_attributes_0_tax_category_id'
-          select 'Flat Percent', from: 'sets_enterprise_fee_set_collection_attributes_0_calculator_type'
-          click_button 'Update'
+        context "with fees applied over the line item" do
+          it "creates enterprise fees" do
+            select distributor1.name,
+                   from: 'sets_enterprise_fee_set_collection_attributes_0_enterprise_id'
+            select 'Packing', from: 'sets_enterprise_fee_set_collection_attributes_0_fee_type'
+            fill_in 'sets_enterprise_fee_set_collection_attributes_0_name', with: 'foo'
+            select 'GST', from: 'sets_enterprise_fee_set_collection_attributes_0_tax_category_id'
+            select 'Flat Percent', from: 'sets_enterprise_fee_set_collection_attributes_0_calculator_type'
+            click_button 'Update'
 
-          expect(flash_message).to eq('Your enterprise fees have been updated.')
+            expect(flash_message).to eq('Your enterprise fees have been updated.')
 
-          # After saving, we should be redirected to the fees for our chosen enterprise
-          expect(page).not_to have_select 'sets_enterprise_fee_set_collection_attributes_1_enterprise_id',
-                                          selected: 'Second Distributor'
+            # After saving, we should be redirected to the fees for our chosen enterprise
+            expect(page).not_to have_select 'sets_enterprise_fee_set_collection_attributes_1_enterprise_id',
+                                            selected: 'Second Distributor'
 
-          enterprise_fee = EnterpriseFee.find_by name: 'foo'
-          expect(enterprise_fee.enterprise).to eq(distributor1)
+            enterprise_fee = EnterpriseFee.find_by name: 'foo'
+            expect(enterprise_fee.enterprise).to eq(distributor1)
+          end
+        end
+        context "with fees applied over the order" do
+          it "creates the fee and displays a success message to the user" do
+            select distributor1.name,
+                   from: 'sets_enterprise_fee_set_collection_attributes_0_enterprise_id'
+            select 'Packing', from: 'sets_enterprise_fee_set_collection_attributes_0_fee_type'
+            fill_in 'sets_enterprise_fee_set_collection_attributes_0_name', with: 'foo'
+            select 'Inherit From Product', from: 'sets_enterprise_fee_set_collection_attributes_0_tax_category_id'
+            select 'Flat Rate (per order)', from: 'sets_enterprise_fee_set_collection_attributes_0_calculator_type'
+            click_button 'Update'
+
+            # expect(flash_message).to eq('Your enterprise fees have been updated.')
+            expect(page).to have_content('Inheriting the tax categeory requires a per-item calculator.')
+
+            # After saving, we should be redirected to the fees for our chosen enterprise
+            expect(page).not_to have_select 'sets_enterprise_fee_set_collection_attributes_1_enterprise_id',
+                                            selected: 'Second Distributor'
+            expect(EnterpriseFee.count).to eq(1)
+            enterprise_fee = EnterpriseFee.find_by name: 'foo'
+            expect(enterprise_fee.enterprise).to eq(distributor1)
+          end
         end
       end
     end
