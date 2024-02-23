@@ -32,7 +32,7 @@ We also have a [Super Admin Guide][super-admin-guide] to help with configuration
 
 ## Testing
 
-If you'd like to help out with testing, please introduce yourself on the #testing channel on [Slack][slack-invite]. Also, do have a look in our [Welcome New QAs board][welcome-qa] for some good first issues, both on manual and automated testing (RSpec/Capybara).
+If you'd like to help out with testing, please introduce yourself on the #testing channel on [Slack][slack-invite]. You can have an overview of the current issues in the main [Delivery Board](https://github.com/orgs/openfoodfoundation/projects/8/). Also, do have a look in our [Welcome New QAs board][welcome-qa] for some good first issues, both on manual and automated testing (RSpec/Capybara).
 
 We use [BrowserStack](https://www.browserstack.com/) as a manual testing tool. BrowserStack provides open source projects with unlimited and free of charge accounts. A big thanks to them!
 
@@ -53,3 +53,4 @@ Copyright (c) 2012 - 2024 Open Food Foundation, released under the AGPL licence.
 [super-admin-guide]: https://ofn-user-guide.gitbook.io/ofn-super-admin-guide
 [welcome-dev]: https://github.com/orgs/openfoodfoundation/projects/5
 [welcome-qa]: https://github.com/orgs/openfoodfoundation/projects/6
+[Delivery Board]: (https://github.com/orgs/openfoodfoundation/projects/8/)
