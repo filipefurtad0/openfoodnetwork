@@ -34,7 +34,7 @@
     "stimulus_reflex": "3.5.1",
     "tom-select": "^2.3.1",
     "trix": "^2.1.1",
-    "webpack": "~4"
+    "webpack": "~5"
   },
   "devDependencies": {
     "jasmine-core": "~5.1.2",
