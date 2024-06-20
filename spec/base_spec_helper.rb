@@ -298,4 +298,5 @@ RSpec.configure do |config|
   config.include Features::TrixEditorHelper, type: :system
   config.include DownloadsHelper, type: :system
   config.include ReportsHelper, type: :system
+  config.include ProductsHelper, type: :system
 end
